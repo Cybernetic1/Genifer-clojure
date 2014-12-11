@@ -25,8 +25,23 @@
     (prn-atom atom))
   (print "]\n")
   (flush)
-  (unify t1 t2)
-	)
+  (let [result (unify t1 t2)]
+    (print "result = ")
+    (println result)
+    (println (seq? result))
+    (if (seq? result)
+      (do
+        (prn-atom (first (first (first result))))
+        (prn-atom (second (first (first result)))))
+      ;(for [subs result]
+        ;;; (for [sub subs]
+          ;(do
+            ;(print "The fucking sub is: ")
+            ;(println subs)
+            ;(prn-atom (first subs))
+            ;(prn-atom (second subs)))) ;)
+      (print result))
+    result))
 
 ;; Syntactic unify
 ;; input: 2 terms t1 and t2
